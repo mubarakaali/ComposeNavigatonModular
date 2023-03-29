@@ -7,11 +7,9 @@ import com.northsoltech.domain.models.transform
 import com.northsoltech.domain.remote.SigningDataSource
 import com.northsoltech.network.ApiServices
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class SigningDataSourceImp @Inject constructor(
+class SigningDataSourceImp constructor(
      val apiServices: ApiServices
 
 ): BaseRemoteDataSource(), SigningDataSource {

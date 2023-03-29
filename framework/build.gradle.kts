@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.hilt)
+//    alias(libs.plugins.hilt)
     alias(libs.plugins.google.firebase)
     id("kotlin-kapt")
 }
@@ -68,6 +68,7 @@ dependencies {
     api(libs.bundles.firebase.common)
     api(libs.firebase.config)
 
-    implementation(libs.bundles.di)
-    kapt(libs.bundles.di.kapt)
+    implementation(libs.bundles.koin.di)
+//    implementation(libs.bundles.di)
+//    kapt(libs.bundles.di.kapt)
 }

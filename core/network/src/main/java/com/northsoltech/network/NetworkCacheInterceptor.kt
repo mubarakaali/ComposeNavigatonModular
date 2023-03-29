@@ -4,9 +4,8 @@ import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
-class NetworkCacheInterceptor @Inject constructor(
+class NetworkCacheInterceptor constructor(
     private val maxAge: Int,
     private val timeUnit: TimeUnit
 ): Interceptor {

@@ -10,9 +10,8 @@ import com.northsoltech.network.ApiServices
 import com.northsoltech.network.models.signup.SignupRequestDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class SignupRemoteDataSourceImp @Inject constructor(
+class SignupRemoteDataSourceImp constructor(
     private val apiServices: ApiServices
 ): BaseRemoteDataSource(),SignupRemoteDataSource {
 

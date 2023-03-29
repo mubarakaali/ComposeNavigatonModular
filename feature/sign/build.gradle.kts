@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.hilt)
+//    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
     id("kotlin-kapt")
     id("kotlin-parcelize")
@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation(project(":framework"))
     implementation(project(":core:domain"))
-    implementation (libs.bundles.di)
-    kapt (libs.bundles.di.kapt)
+    implementation (libs.bundles.koin.di)
+//    implementation (libs.bundles.di)
+//    kapt (libs.bundles.di.kapt)
 }

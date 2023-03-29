@@ -1,19 +1,12 @@
 package com.northsoltech.bikeagb.ui
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class SplashViewModel @Inject constructor(
-) : ViewModel() {
+class SplashViewModel: ViewModel() {
     var isTimeOut = mutableStateOf(false)
 
     //    val isTimeOut = _isTimeOut.asStateFlow()

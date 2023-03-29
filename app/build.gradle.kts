@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.hilt)
+//    alias(libs.plugins.hilt)
     id("kotlin-kapt")
 }
 kapt {
@@ -63,9 +63,10 @@ dependencies {
     implementation(project(":feature:sign"))
     implementation(project(":feature:home"))
     implementation(project(":core:network"))
+    implementation(libs.bundles.koin.di)
+    testImplementation(libs.bundles.unit.testing)
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
-
-    implementation(libs.bundles.di)
-    kapt(libs.bundles.di.kapt)
+//    implementation(libs.bundles.di)
+//    kapt(libs.bundles.di.kapt)
 }

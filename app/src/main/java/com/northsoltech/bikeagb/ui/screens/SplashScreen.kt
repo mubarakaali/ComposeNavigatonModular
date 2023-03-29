@@ -11,13 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.northsoltech.app.R
 import com.northsoltech.bikeagb.ui.SplashViewModel
 import com.northsoltech.framework.components.MainTitleText
 import com.northsoltech.sign.ui.navigation.SIGN_GRAPH_ROUTE
+import org.koin.androidx.compose.koinViewModel
 
 @Preview
 @Composable
@@ -30,13 +30,8 @@ fun PreviewSplashScreen(){
 @Composable
 fun SplashRoutes(
     navHostController: NavHostController,
-    splashVieModel: SplashViewModel = hiltViewModel(),
-//    splashVieModel: SplashViewModel = hiltViewModel(),
+    splashVieModel: SplashViewModel = koinViewModel(),
 ){
-//    val timeOut =  remember { splashVieModel.isTimeOut.value }
-//    if(timeOut){
-//        navHostController.navigate(SignScreen.Login.route)
-//    }
 
     SplashScreen(
         splashVieModel = splashVieModel,

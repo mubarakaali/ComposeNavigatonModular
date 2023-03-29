@@ -37,12 +37,13 @@ import com.northsoltech.sign.ui.events.SignInTopEvents
 import com.northsoltech.sign.ui.navigation.HOME_GRAPH_ROUTE
 import com.northsoltech.sign.ui.navigation.SignDestinations
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.compose.koinViewModel
 
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun LoginScreen(
-    loginViewModel: LoginViewModel = hiltViewModel(),
+    loginViewModel: LoginViewModel = koinViewModel(),
     navigationTopLevelEvents:(SignInTopEvents)->Unit,
 ) {
 

@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.northsoltech.sign.ui.events.SignInTopEvents
-import com.northsoltech.sign.ui.screens.UserTypeRoutes
+import com.northsoltech.sign.ui.signup.UserTypeRoutes
 import com.northsoltech.sign.ui.signin.LoginScreen
 import com.northsoltech.sign.ui.signup.SignupRoutes
 

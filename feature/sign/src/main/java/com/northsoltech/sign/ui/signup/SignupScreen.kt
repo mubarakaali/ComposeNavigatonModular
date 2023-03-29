@@ -33,6 +33,7 @@ import com.northsoltech.framework.ui.theming.Dimension
 import com.northsoltech.framework.utils.extensions.showToast
 import com.northsoltech.sign.R
 import com.northsoltech.sign.ui.navigation.SignDestinations
+import org.koin.androidx.compose.koinViewModel
 
 @Preview
 @Composable
@@ -50,13 +51,13 @@ fun PreviewSignupScreen() {
 
 @Composable
 fun SignupRoutes(navController: NavHostController) {
-     val context =  LocalContext.current
+    val context = LocalContext.current
     SignupScreen(
         onUserAuthentcated = {
             navController.navigate(
                 SignDestinations.Signup.route,
-            ){
-                popUpTo(SignDestinations.Signup.route){
+            ) {
+                popUpTo(SignDestinations.Signup.route) {
                     inclusive = true
                 }
 
@@ -65,14 +66,14 @@ fun SignupRoutes(navController: NavHostController) {
         },
 
         onUserAuthentcateFailed = {
-         context.showToast(it)
+            context.showToast(it)
         })
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignupScreen(
-    signupViewModel: SignupViewModel = hiltViewModel(),
+    signupViewModel: SignupViewModel = koinViewModel(),
     onUserAuthentcated: () -> Unit,
     onUserAuthentcateFailed: (error: String) -> Unit,
 ) {
@@ -104,7 +105,8 @@ fun SignupScreen(
                 .height(Dimension.xlIcon)
                 .width(Dimension.xlIcon),
             painter = painterResource(id = R.drawable.ic_cap),
-            contentDescription = "app_icon")
+            contentDescription = "app_icon"
+        )
         Spacer(modifier = Modifier.height(Dimension.pagePadding))
         MediumTitleText(title = stringResource(R.string.registration))
         Spacer(modifier = Modifier.height(Dimension.pagePadding.times(2)))
@@ -117,8 +119,10 @@ fun SignupScreen(
             onValueChange = { name = it },
             label = { Text(text = stringResource(id = R.string.name)) },
             leadingIcon = {
-                Icon(imageVector = Icons.Filled.Person,
-                    contentDescription = "name")
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = "name"
+                )
             },
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next,
@@ -139,8 +143,10 @@ fun SignupScreen(
             onValueChange = { phoneNumber = it },
             label = { Text(text = stringResource(id = R.string.phone_number)) },
             leadingIcon = {
-                Icon(imageVector = Icons.Filled.Call,
-                    contentDescription = "call")
+                Icon(
+                    imageVector = Icons.Filled.Call,
+                    contentDescription = "call"
+                )
             },
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next,
@@ -161,8 +167,10 @@ fun SignupScreen(
             onValueChange = { cnicNumber = it },
             label = { Text(text = stringResource(id = R.string.cnic)) },
             leadingIcon = {
-                Icon(imageVector = Icons.Filled.ShoppingCart,
-                    contentDescription = "call")
+                Icon(
+                    imageVector = Icons.Filled.ShoppingCart,
+                    contentDescription = "call"
+                )
             },
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next,
@@ -182,8 +190,10 @@ fun SignupScreen(
                 color = MaterialTheme.colors.secondary
             ),
             leadingIcon = {
-                Icon(imageVector = Icons.Filled.Lock,
-                    contentDescription = "lock")
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = "lock"
+                )
             },
             onValueChange = { userPassword = it },
             label = { Text(text = "Password") },
@@ -200,8 +210,10 @@ fun SignupScreen(
                 IconButton(onClick = {
                     isVisible = !isVisible
                 }) {
-                    Icon(painter = icon,
-                        contentDescription = "view password")
+                    Icon(
+                        painter = icon,
+                        contentDescription = "view password"
+                    )
                 }
             },
             visualTransformation = if (isVisible) VisualTransformation.None else PasswordVisualTransformation()

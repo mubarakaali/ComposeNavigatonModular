@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="$USER_HOME$/.android/avd/Marshmallow_3a_XL_API_23.avd" />
+            <value value="C:\Users\Mubarik Ali\.android\avd\Nougat_7_API_24_.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-10-07T15:15:37.948818Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-03-29T03:09:29.897923400Z" />
   </component>
 </project>

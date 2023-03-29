@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.hilt)
+//    alias(libs.plugins.hilt)
     id("kotlin-kapt")
 }
 kapt {
@@ -55,6 +55,7 @@ android {
 dependencies {
 
     implementation(libs.coroutines)
-    implementation(libs.bundles.di)
-    kapt(libs.bundles.di.kapt)
+    implementation(libs.bundles.koin.di)
+//    implementation(libs.bundles.di)
+//    kapt(libs.bundles.di.kapt)
 }
