@@ -24,6 +24,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = "https://www.jitpack.io")
+        maven(url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap"))
+//        maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
     }
 }
 rootProject.name = "ComposeNavigationWithMultiModule"

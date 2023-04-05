@@ -1,29 +1,57 @@
 package com.northsoltech.network.di
-
-import com.core.network.BuildConfig
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.northsoltech.network.ApiServices
-import com.northsoltech.network.NetworkCacheInterceptor
+import com.northsoltech.network.services.ApiServices
+import com.northsoltech.network.services.ApiServicesImp
 import com.northsoltech.network.utils.ApiConstants.BASE_URL
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.compose.get
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import java.util.concurrent.TimeUnit
 
 val netWorkModule = module {
+    single { providesHttpClient() }
     single { providesJson() }
-    single { provideLoggingInterceptor() }
-    single { provideNetworkCacheInterceptor() }
-    single { provideOkHttp(get(), get()) }
-    single { providesApiServices(get()) }
-    single { providesRetrofit(get(), get()) }
+    single<ApiServices>{ApiServicesImp(get()) }
 
 }
 
+fun providesHttpClient() = HttpClient(CIO){
+    expectSuccess = true
+    install(Logging){
+        logger = Logger.DEFAULT
+        level = LogLevel.ALL
+        filter {request->
+            request.url.host.contains("ktor.io")
+        }
+    }
+    install(ContentNegotiation){
+        json()
+    }
+
+    defaultRequest {
+        url(BASE_URL){
+            protocol = URLProtocol.HTTPS
+            host = "ktor.io"
+//            path("doc/")
+//            parameters.apply {
+//                append("token","abc123")
+//                append("test_key","testValue")
+//            }
+//            header("custom_header","hello")
+        }
+    }
+//    install(JsonFeature){
+//
+//        serializer = KotlinxSerializer()
+//    }
+
+}
 fun providesJson(): Json {
     val module = SerializersModule {
 
@@ -33,37 +61,4 @@ fun providesJson(): Json {
         ignoreUnknownKeys = true
         serializersModule = module
     }
-}
-
-
-fun provideLoggingInterceptor() =
-    HttpLoggingInterceptor().setLevel(
-        if (BuildConfig.DEBUG)
-            HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
-    )
-
-fun provideNetworkCacheInterceptor() = NetworkCacheInterceptor(7, TimeUnit.DAYS)
-fun provideOkHttp(
-    interceptor: HttpLoggingInterceptor,
-    networkCacheInterceptor: NetworkCacheInterceptor,
-) = OkHttpClient.Builder()
-    .connectTimeout(10L, TimeUnit.MILLISECONDS)
-    .writeTimeout(10L, TimeUnit.MILLISECONDS)
-    .readTimeout(10L, TimeUnit.MILLISECONDS)
-    .addNetworkInterceptor(networkCacheInterceptor)
-    .addInterceptor(interceptor)
-    .build()
-
-
-fun providesApiServices(retrofit: Retrofit): ApiServices = retrofit.create(ApiServices::class.java)
-fun providesRetrofit(
-    json: Json,
-    okHttpClient: OkHttpClient
-): Retrofit {
-    val contentType = "application/json".toMediaType()
-    return Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(okHttpClient)
-        .addConverterFactory(json.asConverterFactory(contentType))
-        .build()
 }

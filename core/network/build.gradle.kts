@@ -61,7 +61,8 @@ dependencies {
 //    implementation(libs.bundles.di)
 //    kapt(libs.bundles.di.kapt)
     implementation(libs.bundles.koin.di)
-    implementation(libs.bundles.networking)
+//    implementation(libs.bundles.networking)
+    implementation(libs.bundles.ktor.networking)
     implementation(libs.bundles.serialization)
     implementation(libs.coroutines)
 }

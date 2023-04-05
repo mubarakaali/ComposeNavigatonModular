@@ -35,6 +35,7 @@ multidex-v = "2.0.1"
 okhttp-v = "4.9.1"
 okhttp-logging-interceptor-v = "4.9.1"
 retrofit-v = "2.9.0"
+ktor_v = "2.2.4"
 retrofit-kotlinx-v = "0.8.0"
 serialization-v = "1.2.1"
 serialization-pulgin-v = "1.5.0"
@@ -98,8 +99,23 @@ lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmo
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp-logging-interceptor-v" }
 mockk = { module = "io.mockk:mockk-android", version.ref = "mockk-v" }
 mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk-v" }
+
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp-v" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit-v" }
+
+ktor-core = {module = "io.ktor:ktor-client-core",version.ref = "ktor_v"}
+ktor-cio = {module = "io.ktor:ktor-client-cio",version.ref = "ktor_v"}
+ktor-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation",version.ref = "ktor_v"}
+ktor-serialization-json = {module = "io.ktor:ktor-serialization-kotlinx-json",version.ref = "ktor_v"}
+ktor-serialization-xml = {module = "io.ktor:ktor-serialization-kotlinx-xml",version.ref = "ktor_v"}
+ktor-serialization-cbor = {module = "io.ktor:ktor-serialization-kotlinx-cbor",version.ref = "ktor_v"}
+ktor-serialization-protobuf = {module = "io.ktor:ktor-serialization-kotlinx-protobuf",version.ref = "ktor_v"}
+#ktor-logback-classic = {module = "ch.qos.logback:logback-classic",version.ref = "ktor_v"}
+ktor-android = {module = "io.ktor:ktor-client-android",version.ref = "ktor_v"}
+#ktor-serialization = {module = "io.ktor:ktor-client-serialization",version.ref = "ktor_v"}
+ktor-logging = {module = "io.ktor:ktor-client-logging",version.ref = "ktor_v"}
+ktor-okhttp = {module = "io.ktor:ktor-client-okhttp",version.ref = "ktor_v"}
+
 kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 retrofit-kotlinx-jakewharton = {module ="com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter",version.ref = "retrofit-kotlinx-v"}
 
@@ -112,6 +128,22 @@ google-truth-test = {module = "com.google.truth:truth",version.ref = "google-tru
 
 
 [bundles]
+ktor-networking=[
+    "ktor-core",
+    "ktor-cio",
+    "ktor-android",
+#    "ktor-serialization",
+    "ktor-okhttp",
+    "ktor-logging",
+    "ktor-content-negotiation",
+    "ktor-serialization-json",
+    "ktor-serialization-xml",
+    "ktor-serialization-cbor",
+    "ktor-serialization-protobuf"
+]
+serialization = [
+    "kotlinx-serialization-json",
+]
 koin-di = [
     "koin-version",
     "koin-android-version",
@@ -177,9 +209,6 @@ networking = [
     "retrofit",
     "retrofit-kotlinx-jakewharton"
 
-]
-serialization = [
-    "kotlinx-serialization-json",
 ]
 #service-kapt = [
 #    "hilt-compiler-kapt",

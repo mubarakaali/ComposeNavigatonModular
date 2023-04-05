@@ -4,7 +4,6 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-internal object NetworkUtils {
 
     private const val genericNetworkError = "An error occurred getting data from server."
 
@@ -26,5 +25,4 @@ internal object NetworkUtils {
         500 -> "A server error occurred."
         // Any other error executing the API
         else -> genericNetworkError
-    }
 }
