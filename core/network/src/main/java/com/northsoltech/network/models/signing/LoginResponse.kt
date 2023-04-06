@@ -16,6 +16,7 @@ data class LoginResponse(
     @SerialName("statusCode")
     var statusCode: Int?
 ){
+
     fun toDomain() = LoginData(
         token = loginData?.tokenDTO?.toTokenDomain(),
         user = loginData?.user?.toUserDomain()

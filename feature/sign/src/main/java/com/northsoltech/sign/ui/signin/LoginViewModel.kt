@@ -44,6 +44,7 @@ class LoginViewModel  constructor(
                 phoneNo = phoneNo,
                 password = password
             ).collect {
+                Log.d("jejeje", "viewModel userLogin collect ${it}")
                 when (it) {
                     is ApiResource.Loading -> {
                         uiState.value = UiState.Loading
